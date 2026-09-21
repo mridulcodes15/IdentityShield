@@ -73,24 +73,22 @@ IdentityShield integrates three core analysis engines (Voice, Video, and Context
 | **Target Platforms** | Web Dashboard, Mobile App (Flutter / Android Native) | Multi-device user & enterprise coverage |
 
 ---
-
 ## 📂 Project Structure
 
-text
 sih2026/
 ├── assets/
-│   ├── system-workflow.png            # 7-Step Execution Flowchart
-│   ├── technical-architecture.png     # Multimodal Technical Pipeline
-│   └── target-audience-flowchart.png  # Impact & Target Audience Diagram
+│   ├── system-workflow.png
+│   ├── technical-architecture.png
+│   └── target-audience-flowchart.png
 ├── docs/
-│   └── Research.md                    # Deep technical research, benchmarks & legal compliance notes
+│   └── RESEARCH.md
 ├── frontend/
-│   └── index.html                     # Interactive Web Prototype Dashboard
-├── .env.example                       # Environment configuration template
-├── .gitignore                         # Git ignore rules
-├── CONTRIBUTING.md                    # Contribution guidelines
-├── LICENSE                            # MIT License
-└── README.md                          # Project Documentation
+│   └── index.html
+├── .env.example
+├── .gitignore
+├── CONTRIBUTING.md
+├── LICENSE
+└── README.md
 
 🏁 Getting Started
 Prerequisites
