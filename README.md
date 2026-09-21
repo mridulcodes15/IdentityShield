@@ -82,7 +82,7 @@ sih2026/
 │   ├── technical-architecture.png
 │   └── target-audience-flowchart.png
 ├── docs/
-│   └── RESEARCH.md
+│   └── Research.md
 ├── frontend/
 │   └── index.html
 ├── .env.example
