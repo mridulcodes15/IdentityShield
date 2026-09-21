@@ -75,6 +75,7 @@ IdentityShield integrates three core analysis engines (Voice, Video, and Context
 ---
 ## 📂 Project Structure
 
+```text
 sih2026/
 ├── assets/
 │   ├── system-workflow.png
@@ -89,7 +90,7 @@ sih2026/
 ├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
-
+```
 🏁 Getting Started
 Prerequisites
 Any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, or Safari).
