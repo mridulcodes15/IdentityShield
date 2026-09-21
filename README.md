@@ -11,7 +11,7 @@
 
 Unlike legacy reactive security systems that analyze recorded media after financial or identity loss has occurred, IdentityShield operates on a **proactive, two-stage detection model**. It passively screens continuous incoming media and selectively escalates to deep multimodal analysis (Voice + Video + Context) upon detecting suspicious signals—providing instant, on-screen warnings during active calls.
 
-![Target Audience & Impact](assets/target-audience-flowchart.png)
+* 📊 [View Target Audience & Impact Diagram](assets/target-audience-flowchart.png)
 
 ---
 
@@ -19,7 +19,7 @@ Unlike legacy reactive security systems that analyze recorded media after financ
 
 The technical architecture, legal positioning, and empirical benchmarks supporting IdentityShield are documented in detail:
 
-* 📄 **Technical Research & Legal Specs:** See [`docs/RESEARCH.md`](docs/RESEARCH.md) for benchmark datasets, competitor matrices, and DPDP Act compliance notes.
+* 📄 **Technical Research & Legal Specs:** See [`docs/RESEARCH.md`](docs/Research.md) for benchmark datasets, competitor matrices, and DPDP Act compliance notes.
 * 📂 **External Research Repository:** [Access Neural_Nexus Google Drive Folder](https://drive.google.com/drive/folders/1kEshmEFXIH1pF_I_JMJKXndjwZukFLTW)
 
 ---
@@ -42,13 +42,13 @@ The technical architecture, legal positioning, and empirical benchmarks supporti
 
 IdentityShield integrates three core analysis engines (Voice, Video, and Context) into a unified **Multimodal Threat Fusion Framework** to compute a real-time Confidence & Risk Score (*Low*, *Moderate*, *High*, *Very High*).
 
-![Technical Architecture](assets/technical-architecture.png)
+* 📐 [View Technical Architecture Diagram](assets/technical-architecture.png)
 
 ---
 
 ### Step-by-Step Incident Execution Flow
 
-![Step-by-Step Incident Execution Flow](assets/system-workflow.png)
+* 🔄 [View System Execution Flowchart](assets/system-workflow.png)
 
 1. **Incoming Voice / Video Call:** Call is initiated or answered on the target user's device.
 2. **Lightweight Monitoring:** Continuous passive screening evaluates baseline acoustic and conversational signals.
@@ -83,7 +83,7 @@ sih2026/
 │   ├── technical-architecture.png     # Multimodal Technical Pipeline
 │   └── target-audience-flowchart.png  # Impact & Target Audience Diagram
 ├── docs/
-│   └── RESEARCH.md                    # Deep technical research, benchmarks & legal compliance notes
+│   └── Research.md                    # Deep technical research, benchmarks & legal compliance notes
 ├── frontend/
 │   └── index.html                     # Interactive Web Prototype Dashboard
 ├── .env.example                       # Environment configuration template
@@ -91,7 +91,6 @@ sih2026/
 ├── CONTRIBUTING.md                    # Contribution guidelines
 ├── LICENSE                            # MIT License
 └── README.md                          # Project Documentation
-
 🏁 Getting Started
 Prerequisites
 Any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, or Safari).
