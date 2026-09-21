@@ -1,0 +1,2985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IdentityShield — Neural Nexus</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #ffffff;
+      color: #172033;
+      line-height: 1.5;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    button,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      border-bottom: 1px solid #e7eaf0;
+    }
+
+    .nav-inner {
+      height: 68px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 21px;
+    }
+
+    .brand span {
+      color: #1677ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #667085;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #1677ff;
+    }
+
+    .hero {
+      padding: 52px 0 30px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 20px;
+      background: #eef6ff;
+      color: #1677ff;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 46px;
+      line-height: 1.08;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: #667085;
+      font-size: 16px;
+    }
+
+    .status-box {
+      border: 1px solid #e0e5eb;
+      border-radius: 14px;
+      padding: 22px;
+      background: #fafcff;
+    }
+
+    .status-box h3 {
+      margin-bottom: 7px;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      border-radius: 50%;
+      background: #1fa768;
+      margin-right: 8px;
+    }
+
+    .status-box p {
+      font-size: 13px;
+      color: #667085;
+    }
+
+    section {
+      padding: 30px 0;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+    }
+
+    .section-head h2 {
+      font-size: 27px;
+      margin-bottom: 3px;
+    }
+
+    .section-head p {
+      color: #7c8493;
+      font-size: 14px;
+    }
+
+    .flow-strip {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      margin-top: 22px;
+    }
+
+    .flow-item {
+      border: 1px solid #e0e5eb;
+      padding: 11px 8px;
+      text-align: center;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #425067;
+      background: white;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .metric {
+      border: 1px solid #e1e5eb;
+      border-radius: 13px;
+      padding: 19px;
+      background: white;
+    }
+
+    .metric small {
+      color: #7d8593;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 29px;
+    }
+
+    .green {
+      color: #138a55;
+    }
+
+    .red {
+      color: #d33e3e;
+    }
+
+    .orange {
+      color: #d47a1f;
+    }
+
+    .panel {
+      border: 1px solid #e0e5eb;
+      border-radius: 15px;
+      padding: 22px;
+      background: white;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 0.72fr 1.28fr;
+      gap: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 14px 0 7px;
+    }
+
+    select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #ccd3dc;
+      border-radius: 9px;
+      background: white;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 9px;
+      padding: 11px 16px;
+      font-weight: 700;
+      margin-top: 12px;
+    }
+
+    .btn-primary {
+      background: #1677ff;
+      color: white;
+    }
+
+    .btn-light {
+      background: #f1f4f7;
+      color: #344054;
+    }
+
+    .btn-danger {
+      background: #d63b3b;
+      color: white;
+    }
+
+    .btn-dark {
+      background: #172033;
+      color: white;
+    }
+
+    .call-screen {
+      position: relative;
+      margin-top: 18px;
+      border: 1px solid #dfe5ed;
+      border-radius: 14px;
+      padding: 22px;
+      text-align: center;
+      background: #fafcff;
+      min-height: 220px;
+      overflow: hidden;
+      transition: min-height .2s ease;
+    }
+
+    .call-screen.warning-active {
+      min-height: 390px;
+    }
+
+    .call-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      margin: auto;
+      background: #eaf3ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+
+    .caller-name {
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .caller-number {
+      color: #77808e;
+      font-size: 13px;
+      margin-top: 3px;
+    }
+
+    .call-meta {
+      margin-top: 9px;
+      color: #667085;
+      font-size: 13px;
+    }
+
+    .protection {
+      margin-top: 11px;
+      display: inline-block;
+      background: #e9f8f0;
+      color: #138a55;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .warning-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.98);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      z-index: 10;
+    }
+
+    .warning-card {
+      width: 100%;
+      border: 2px solid #e15555;
+      border-radius: 14px;
+      background: #fff7f7;
+      padding: 20px;
+    }
+
+    .warning-icon {
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .warning-card h3 {
+      color: #c73333;
+      margin-bottom: 8px;
+    }
+
+    .warning-card p {
+      color: #6f5252;
+      font-size: 13px;
+    }
+
+    .warning-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .warning-actions .btn {
+      margin-top: 0;
+      flex: 0 1 auto;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .trigger-status {
+      margin-top: 14px;
+      border: 1px solid #e0e5eb;
+      border-radius: 11px;
+      padding: 13px 15px;
+      background: #fbfcfe;
+      font-size: 13px;
+      color: #667085;
+    }
+
+    .trigger-status strong { color: #172033; }
+    .trigger-status.active { border-color: #efb2a7; background: #fff7f5; color: #a83b2e; }
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 11px;
+      margin-top: 14px;
+    }
+
+    .analysis-card {
+      border: 1px solid #e0e5eb;
+      border-radius: 11px;
+      padding: 15px;
+    }
+
+    .analysis-card h4 {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .analysis-card p {
+      font-size: 12px;
+      color: #6e7785;
+      min-height: 36px;
+    }
+
+    .bar {
+      height: 8px;
+      border-radius: 50px;
+      background: #edf0f4;
+      margin-top: 9px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0;
+      transition: width .5s ease;
+    }
+
+    .voice-fill {
+      background: #1677ff;
+    }
+
+    .context-fill {
+      background: #18a2a0;
+    }
+
+    .video-fill {
+      background: #7857cf;
+    }
+
+    .risk-box {
+      display: grid;
+      grid-template-columns: 0.38fr 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-top: 16px;
+      border: 1px solid #e0e5eb;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .risk-score-area {
+      text-align: center;
+    }
+
+    .risk-score {
+      font-size: 53px;
+      font-weight: 900;
+      color: #1677ff;
+    }
+
+    .risk-badge {
+      display: inline-block;
+      padding: 5px 10px;
+      margin-top: 5px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      background: #edf4ff;
+      color: #1677ff;
+    }
+
+    .risk-info h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .risk-info p {
+      font-size: 13px;
+      color: #667085;
+      margin-bottom: 8px;
+    }
+
+    .signals {
+      padding-left: 18px;
+      font-size: 13px;
+      color: #4d5665;
+    }
+
+    .signals li {
+      margin: 4px 0;
+    }
+
+    .transcript {
+      margin-top: 16px;
+      border: 1px solid #e1e6ec;
+      border-radius: 12px;
+      padding: 16px;
+      max-height: 230px;
+      overflow-y: auto;
+      background: #fbfcfe;
+    }
+
+    .transcript h4 {
+      margin-bottom: 11px;
+    }
+
+    .line {
+      padding: 9px 10px;
+      background: white;
+      border: 1px solid #eef1f4;
+      border-radius: 8px;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    .danger-text {
+      color: #c73535;
+      font-weight: 700;
+    }
+
+    mark {
+      background: #ffe3e3;
+      color: #b92f2f;
+      padding: 1px 3px;
+      border-radius: 3px;
+    }
+
+    .timeline {
+      margin-top: 15px;
+      border: 1px solid #e1e5eb;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .timeline h4 {
+      margin-bottom: 10px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 85px 1fr;
+      gap: 10px;
+      border-bottom: 1px solid #edf0f3;
+      padding: 8px 0;
+      font-size: 12px;
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .time {
+      color: #738091;
+      font-family: monospace;
+    }
+
+    .responses {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .response {
+      border: 1px solid #e0e5eb;
+      border-radius: 11px;
+      padding: 15px;
+    }
+
+    .response strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .response p {
+      color: #687180;
+      font-size: 12px;
+    }
+
+    .incident-message {
+      margin-top: 14px;
+      padding: 13px;
+      border: 1px solid #bde0cb;
+      background: #f1fbf5;
+      color: #197248;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .vault-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .incident {
+      border: 1px solid #e0e5eb;
+      border-radius: 12px;
+      padding: 17px;
+    }
+
+    .incident-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .incident p {
+      font-size: 13px;
+      color: #616a78;
+      margin: 5px 0;
+    }
+
+    .hash {
+      font-family: monospace;
+      word-break: break-all;
+      font-size: 11px;
+      background: #f6f8fa;
+      border-radius: 7px;
+      padding: 8px;
+      margin-top: 7px;
+    }
+
+    .privacy-note {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      color: #7b8492;
+    }
+
+    footer {
+      margin-top: 34px;
+      border-top: 1px solid #e5e9ef;
+      padding: 24px 0;
+      text-align: center;
+      color: #7b8493;
+      font-size: 12px;
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .shake {
+      animation: shake .25s linear 3;
+    }
+
+    @media(max-width: 900px) {
+      .hero-grid,
+      .main-grid,
+      .risk-box {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics,
+      .analysis-grid,
+      .responses,
+      .vault-grid,
+      .flow-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      h1 {
+        font-size: 37px;
+      }
+    }
+
+    @media(max-width: 560px) {
+      .metrics,
+      .analysis-grid,
+      .responses,
+      .vault-grid,
+      .flow-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .call-screen.warning-active {
+        min-height: 470px;
+      }
+
+      .warning-overlay {
+        padding: 12px;
+      }
+
+      .warning-card {
+        padding: 16px 12px;
+      }
+
+      .warning-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .warning-actions .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="brand">
+      Neural Nexus <span>IdentityShield</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#dashboard">Dashboard</a>
+      <a href="#shield">Live Call Shield</a>
+      <a href="#response">Response</a>
+      <a href="#vault">Incident Vault</a>
+    </div>
+  </div>
+</nav>
+
+
+<header class="hero">
+  <div class="container">
+
+    <div class="hero-grid">
+
+      <div>
+        <div class="tag">
+          REAL-TIME AI FRAUD PROTECTION
+        </div>
+
+        <h1>
+          Detect. Assess.<br>
+          Warn. Protect.
+        </h1>
+
+        <p>
+          IdentityShield is a prototype cybersecurity system designed
+          to detect AI voice cloning, deepfake impersonation and
+          coercive scams during active calls, warn users in real time
+          and preserve incident evidence for later reporting.
+        </p>
+      </div>
+
+      <div class="status-box">
+        <h3>
+          <span class="status-dot"></span>
+          IdentityShield Active
+        </h3>
+
+        <p>
+          Controlled prototype simulation with local threat analysis,
+          live risk scoring and incident evidence generation.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="flow-strip">
+      <div class="flow-item">📞 CALL</div>
+      <div class="flow-item">👁 MONITOR</div>
+      <div class="flow-item">⚠ DETECT</div>
+      <div class="flow-item">📊 ASSESS</div>
+      <div class="flow-item">⚠ WARN</div>
+      <div class="flow-item">🛡 PROTECT</div>
+      <div class="flow-item">📁 RECORD</div>
+    </div>
+
+  </div>
+</header>
+
+
+<section id="dashboard">
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Protection Dashboard</h2>
+      <p>Prototype security overview</p>
+    </div>
+
+    <div class="metrics">
+
+      <div class="metric">
+        <small>Calls Analyzed</small>
+        <strong id="callsCount">12</strong>
+      </div>
+
+      <div class="metric">
+        <small>Threats Detected</small>
+        <strong class="red" id="threatCount">3</strong>
+      </div>
+
+      <div class="metric">
+        <small>High-Risk Interventions</small>
+        <strong id="interventionCount">2</strong>
+      </div>
+
+      <div class="metric">
+        <small>Protection Status</small>
+        <strong class="green" style="font-size:21px;">
+          ACTIVE
+        </strong>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section id="shield">
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Live Call Shield</h2>
+      <p>Controlled prototype call environment</p>
+    </div>
+
+    <div class="main-grid">
+
+      <div class="panel">
+
+        <h3>Call Simulator</h3>
+
+        <label>Select Demo Scenario</label>
+
+        <select id="scenario">
+          <option value="normal">Normal Call</option>
+          <option value="voice">AI Voice Scam</option>
+          <option value="digital">Digital Arrest Scam</option>
+          <option value="video">Video Deepfake Scam</option>
+        </select>
+
+        <button
+          class="btn btn-primary"
+          onclick="startSimulation()"
+        >
+          Start Incoming Call
+        </button>
+
+        <div class="call-screen" id="callScreen">
+
+          <div class="call-icon">☎</div>
+
+          <div class="caller-name" id="callerName">
+            No Active Call
+          </div>
+
+          <div class="caller-number" id="callerNumber">
+            —
+          </div>
+
+          <div class="call-meta" id="callMeta">
+            Waiting for simulation
+          </div>
+
+          <div class="protection" id="protectionBadge">
+            SHIELD READY
+          </div>
+
+          <div
+            class="warning-overlay hidden"
+            id="warningOverlay"
+          >
+
+            <div class="warning-card">
+
+              <div class="warning-icon">
+                ⚠
+              </div>
+
+              <h3 id="warningTitle">
+                Possible Fraud Call Detected
+              </h3>
+
+              <p id="warningMessage">
+                Suspicious threat indicators detected.
+              </p>
+
+              <div class="warning-actions">
+
+                <button
+                  class="btn btn-danger"
+                  onclick="endCall('User ended call after warning')"
+                >
+                  End Call
+                </button>
+
+                <button
+                  class="btn btn-dark"
+                  onclick="blockCaller()"
+                >
+                  Block & End Call
+                </button>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div
+          class="incident-message hidden"
+          id="incidentSaved"
+        >
+          ✓ Incident saved to Incident Vault.
+        </div>
+
+      </div>
+
+
+      <div class="panel">
+
+        <h3>Real-Time Threat Analysis</h3>
+
+        <div class="trigger-status" id="triggerStatus">
+          <strong>Lightweight Monitoring:</strong> READY • Waiting for suspicious trigger
+        </div>
+
+        <div class="analysis-grid">
+
+          <div class="analysis-card">
+            <h4>🎙 Voice Integrity</h4>
+
+            <p id="voiceText">
+              Waiting for call...
+            </p>
+
+            <div class="bar">
+              <div
+                class="fill voice-fill"
+                id="voiceBar"
+              ></div>
+            </div>
+          </div>
+
+
+          <div class="analysis-card">
+            <h4>🧠 Context Analysis</h4>
+
+            <p id="contextText">
+              Waiting for call...
+            </p>
+
+            <div class="bar">
+              <div
+                class="fill context-fill"
+                id="contextBar"
+              ></div>
+            </div>
+          </div>
+
+
+          <div class="analysis-card">
+            <h4>🎥 Video Integrity</h4>
+
+            <p id="videoText">
+              Not available
+            </p>
+
+            <div class="bar">
+              <div
+                class="fill video-fill"
+                id="videoBar"
+              ></div>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="risk-box">
+
+          <div class="risk-score-area">
+
+            <div
+              class="risk-score"
+              id="riskScore"
+            >
+              0
+            </div>
+
+            <div style="font-size:12px;color:#697383;">
+              Threat Confidence Score
+            </div>
+
+            <div
+              class="risk-badge"
+              id="riskBadge"
+            >
+              LOW RISK
+            </div>
+
+          </div>
+
+
+          <div class="risk-info">
+
+            <h3 id="threatTitle">
+              No Active Threat
+            </h3>
+
+            <p id="threatDescription">
+              Start a call simulation to begin analysis.
+            </p>
+
+            <ul
+              class="signals"
+              id="signalList"
+            >
+              <li>Voice analysis waiting</li>
+              <li>Context analysis waiting</li>
+              <li>Video analysis waiting</li>
+            </ul>
+
+          </div>
+
+        </div>
+
+
+        <div class="transcript">
+
+          <h4>Live Conversation Analysis</h4>
+
+          <div id="transcriptArea">
+
+            <div class="line">
+              Conversation will appear here during simulation.
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline">
+
+          <h4>Incident Timeline</h4>
+
+          <div id="timelineArea">
+
+            <div class="timeline-item">
+              <span class="time">--:--:--</span>
+              <span>No active incident.</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="privacy-note">
+      Prototype Simulation • Intended on-device threat analysis •
+      Sensitive communication data is not uploaded in this demo
+    </div>
+
+  </div>
+</section>
+
+
+<section id="response">
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Adaptive Response</h2>
+      <p>
+        Log → Flag → Warn → Protect based on threat confidence
+      </p>
+    </div>
+
+    <div class="responses">
+
+      <div class="response">
+        <strong class="green">
+          LOW
+        </strong>
+
+        <p>
+          Background monitoring and silent logging.
+        </p>
+      </div>
+
+
+      <div class="response">
+        <strong style="color:#a78300;">
+          MEDIUM
+        </strong>
+
+        <p>
+          Suspicious activity is flagged with an in-call warning.
+        </p>
+      </div>
+
+
+      <div class="response">
+        <strong class="orange">
+          HIGH
+        </strong>
+
+        <p>
+          Strong warning with simulated vibration alert.
+        </p>
+      </div>
+
+
+      <div class="response">
+        <strong class="red">
+          VERY HIGH
+        </strong>
+
+        <p>
+          Critical fraud alert with End Call and Block & End Call actions.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section id="vault">
+  <div class="container">
+
+    <div class="section-head">
+      <h2>Incident Vault</h2>
+
+      <p>
+        Timestamped threat records with downloadable evidence
+      </p>
+    </div>
+
+
+    <div
+      class="vault-grid"
+      id="vaultGrid"
+    >
+
+      <div class="incident">
+
+        <div class="incident-head">
+          <strong>Incident #IS-2048</strong>
+          <span class="red">VERY HIGH</span>
+        </div>
+
+        <p>
+          <b>Threat:</b>
+          Digital Arrest / Voice Impersonation
+        </p>
+
+        <p>
+          <b>Risk Score:</b>
+          81 / 100
+        </p>
+
+        <p>
+          <b>Signals:</b>
+          Voice + Context
+        </p>
+
+        <p>
+          <b>Action:</b>
+          User warned
+        </p>
+
+        <p>
+          <b>Evidence:</b>
+          SHA-256 integrity protected
+        </p>
+
+        <button
+          class="btn btn-primary"
+          onclick="downloadStoredIncident('IS-2048')"
+        >
+          Download Report
+        </button>
+
+      </div>
+
+
+      <div class="incident">
+
+        <div class="incident-head">
+          <strong>Incident #IS-2047</strong>
+          <span class="orange">MODERATE</span>
+        </div>
+
+        <p>
+          <b>Threat:</b>
+          Suspicious Coercive Conversation
+        </p>
+
+        <p>
+          <b>Risk Score:</b>
+          54 / 100
+        </p>
+
+        <p>
+          <b>Signals:</b>
+          Context
+        </p>
+
+        <p>
+          <b>Action:</b>
+          Warning displayed
+        </p>
+
+        <p>
+          <b>Evidence:</b>
+          SHA-256 integrity protected
+        </p>
+
+        <button
+          class="btn btn-primary"
+          onclick="downloadStoredIncident('IS-2047')"
+        >
+          Download Report
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<footer>
+  Neural Nexus — IdentityShield • Smart India Hackathon Prototype
+</footer>
+
+
+<script>
+
+let currentIncident = null;
+let callTimer = null;
+let secondsElapsed = 0;
+let simulationTimeouts = [];
+
+const scenarios = {
+
+  normal: {
+
+    caller: "Known Contact",
+    number: "+91 98XXXXXX45",
+
+    finalVoice: 8,
+    finalContext: 5,
+    finalVideo: 0,
+    finalRisk: 7,
+
+    voiceText: "Natural speech pattern",
+    contextText: "Normal conversation",
+    videoText: "Not available",
+
+    title: "No Significant Threat",
+
+    description:
+      "No suspicious multimodal threat indicators detected.",
+
+    transcript: [
+      {
+        text:
+          "Hi, are you reaching college on time?",
+        risk: 8
+      },
+
+      {
+        text:
+          "Yes, I'll reach in around ten minutes.",
+        risk: 6
+      },
+
+      {
+        text:
+          "Okay, see you soon.",
+        risk: 7
+      }
+    ],
+
+    signals: [
+      "Voice characteristics appear natural",
+      "No coercive language detected",
+      "Conversation context appears normal"
+    ]
+  },
+
+
+  voice: {
+
+    caller: "Unknown Caller",
+    number: "+91 88XXXXXX21",
+
+    finalVoice: 84,
+    finalContext: 61,
+    finalVideo: 0,
+    finalRisk: 72,
+
+    voiceText:
+      "Synthetic voice characteristics detected",
+
+    contextText:
+      "Sensitive information request detected",
+
+    videoText:
+      "Not available",
+
+    title:
+      "Possible AI Voice Impersonation",
+
+    description:
+      "Voice anomalies and suspicious conversational behaviour indicate possible impersonation.",
+
+    transcript: [
+
+      {
+        text:
+          "Hi, it's me. I'm calling from another number.",
+        risk: 22
+      },
+
+      {
+        text:
+          "I urgently need your banking OTP.",
+        highlight: "banking OTP",
+        risk: 48
+      },
+
+      {
+        text:
+          "Please don't call anyone. Just send it now.",
+        highlight: "send it now",
+        risk: 72
+      }
+
+    ],
+
+    signals: [
+      "Synthetic voice characteristics detected",
+      "Sensitive information requested",
+      "Urgency and secrecy indicators detected"
+    ]
+  },
+
+
+  digital: {
+
+    caller:
+      "Unknown Authority Caller",
+
+    number:
+      "+91 79XXXXXX10",
+
+    finalVoice:
+      73,
+
+    finalContext:
+      96,
+
+    finalVideo:
+      0,
+
+    finalRisk:
+      88,
+
+    voiceText:
+      "Voice anomaly detected",
+
+    contextText:
+      "Severe coercion pattern detected",
+
+    videoText:
+      "Not available",
+
+    title:
+      "Possible Digital Arrest Scam",
+
+    description:
+      "Authority impersonation, psychological coercion and urgent financial instructions detected.",
+
+    transcript: [
+
+      {
+        text:
+          "This is the Cyber Crime Department. Your Aadhaar has been linked to an illegal transaction.",
+        highlight:
+          "Cyber Crime Department",
+        risk:
+          24
+      },
+
+      {
+        text:
+          "Do not disconnect this call or contact anyone.",
+        highlight:
+          "Do not disconnect this call",
+        risk:
+          46
+      },
+
+      {
+        text:
+          "You are under digital arrest until verification is complete.",
+        highlight:
+          "digital arrest",
+        risk:
+          67
+      },
+
+      {
+        text:
+          "Transfer ₹50,000 immediately to the verification account.",
+        highlight:
+          "Transfer ₹50,000 immediately",
+        risk:
+          88
+      }
+
+    ],
+
+    signals: [
+      "Authority impersonation detected",
+      "Coercive language detected",
+      "Digital Arrest terminology detected",
+      "Urgent financial instruction detected",
+      "Suspicious voice characteristics detected"
+    ]
+  },
+
+
+  video: {
+
+    caller:
+      "Executive Video Call",
+
+    number:
+      "Secure Video Session",
+
+    finalVoice:
+      63,
+
+    finalContext:
+      70,
+
+    finalVideo:
+      91,
+
+    finalRisk:
+      89,
+
+    voiceText:
+      "Voice mismatch detected",
+
+    contextText:
+      "Urgent transfer request",
+
+    videoText:
+      "Facial / lip-sync anomaly detected",
+
+    title:
+      "Possible Video Deepfake",
+
+    description:
+      "Multiple voice, visual and conversational indicators suggest possible executive impersonation.",
+
+    transcript: [
+
+      {
+        text:
+          "This is the CEO. I need an urgent transfer handled privately.",
+        highlight:
+          "urgent transfer",
+        risk:
+          31
+      },
+
+      {
+        text:
+          "Don't confirm with finance. I need it completed immediately.",
+        highlight:
+          "completed immediately",
+        risk:
+          61
+      },
+
+      {
+        text:
+          "Transfer the amount now and send me confirmation.",
+        highlight:
+          "Transfer the amount now",
+        risk:
+          89
+      }
+
+    ],
+
+    signals: [
+      "Facial and lip-sync inconsistency detected",
+      "Voice mismatch detected",
+      "Urgent financial instruction detected",
+      "Multiple threat modalities increased final risk"
+    ]
+  }
+
+};
+
+
+const storedIncidents = {
+
+  "IS-2048": {
+
+    id: "IS-2048",
+
+    caller:
+      "Unknown Authority Caller",
+
+    number:
+      "+91 79XXXXXX10",
+
+    title:
+      "Possible Digital Arrest Scam",
+
+    risk:
+      81,
+
+    voice:
+      73,
+
+    context:
+      94,
+
+    video:
+      0,
+
+    action:
+      "User warned",
+
+    blocked:
+      "No",
+
+    received:
+      "10:31:08",
+
+    answered:
+      "10:31:12",
+
+    ended:
+      "10:32:01",
+
+    duration:
+      "00:49",
+
+    signals: [
+      "Authority impersonation detected",
+      "Coercive conversation detected",
+      "Urgent financial instruction detected"
+    ],
+
+    timeline: [
+      "10:31:08 — Incoming call received",
+      "10:31:12 — Call answered",
+      "10:31:24 — Authority impersonation detected",
+      "10:31:37 — Coercive phrase detected",
+      "10:31:44 — Risk crossed HIGH threshold",
+      "10:31:45 — User warning displayed",
+      "10:32:01 — Call ended"
+    ]
+  },
+
+
+  "IS-2047": {
+
+    id:
+      "IS-2047",
+
+    caller:
+      "Unknown Caller",
+
+    number:
+      "+91 81XXXXXX31",
+
+    title:
+      "Suspicious Coercive Conversation",
+
+    risk:
+      54,
+
+    voice:
+      21,
+
+    context:
+      68,
+
+    video:
+      0,
+
+    action:
+      "Warning displayed",
+
+    blocked:
+      "No",
+
+    received:
+      "09:11:13",
+
+    answered:
+      "09:11:18",
+
+    ended:
+      "09:12:04",
+
+    duration:
+      "00:46",
+
+    signals: [
+      "Urgency detected",
+      "Coercive context detected"
+    ],
+
+    timeline: [
+      "09:11:13 — Incoming call received",
+      "09:11:18 — Call answered",
+      "09:11:41 — Suspicious language detected",
+      "09:11:43 — Moderate-risk warning displayed",
+      "09:12:04 — Call ended"
+    ]
+  }
+
+};
+
+
+function getTime() {
+
+  return new Date()
+    .toLocaleTimeString([], {
+      hour12: false
+    });
+}
+
+
+function addTimeline(text) {
+
+  if (!currentIncident)
+    return;
+
+  const time =
+    getTime();
+
+  currentIncident.timeline.push(
+    `${time} — ${text}`
+  );
+
+  const area =
+    document.getElementById("timelineArea");
+
+  const item =
+    document.createElement("div");
+
+  item.className =
+    "timeline-item";
+
+  item.innerHTML =
+    `<span class="time">${time}</span>
+     <span>${text}</span>`;
+
+  area.appendChild(item);
+
+  area.scrollTop =
+    area.scrollHeight;
+}
+
+
+function updateRisk(score) {
+
+  const badge =
+    document.getElementById("riskBadge");
+
+  const scoreElement =
+    document.getElementById("riskScore");
+
+  scoreElement.textContent =
+    score;
+
+  currentIncident.risk =
+    score;
+
+  if (score < 30) {
+
+    badge.textContent =
+      "LOW RISK";
+
+    badge.style.background =
+      "#eaf8f1";
+
+    badge.style.color =
+      "#138a55";
+
+    scoreElement.style.color =
+      "#138a55";
+  }
+
+  else if (score < 55) {
+
+    badge.textContent =
+      "MODERATE RISK";
+
+    badge.style.background =
+      "#fff6d8";
+
+    badge.style.color =
+      "#a78300";
+
+    scoreElement.style.color =
+      "#a78300";
+  }
+
+  else if (score < 75) {
+
+    badge.textContent =
+      "HIGH RISK";
+
+    badge.style.background =
+      "#fff0df";
+
+    badge.style.color =
+      "#d47a1f";
+
+    scoreElement.style.color =
+      "#d47a1f";
+  }
+
+  else {
+
+    badge.textContent =
+      "VERY HIGH RISK";
+
+    badge.style.background =
+      "#ffeaea";
+
+    badge.style.color =
+      "#d63b3b";
+
+    scoreElement.style.color =
+      "#d63b3b";
+  }
+}
+
+
+function startSimulation() {
+
+  resetSimulation();
+
+  const selected =
+    document.getElementById("scenario").value;
+
+  const data =
+    scenarios[selected];
+
+  const incidentId =
+    "IS-" +
+    Math.floor(
+      3000 + Math.random() * 6000
+    );
+
+  currentIncident = {
+
+    id:
+      incidentId,
+
+    caller:
+      data.caller,
+
+    number:
+      data.number,
+
+    title:
+      data.title,
+
+    risk:
+      0,
+
+    voice:
+      0,
+
+    context:
+      0,
+
+    video:
+      0,
+
+    action:
+      "No action yet",
+
+    blocked:
+      "No",
+
+    received:
+      getTime(),
+
+    answered:
+      "",
+
+    ended:
+      "",
+
+    duration:
+      "",
+
+    signals:
+      data.signals,
+
+    timeline:
+      []
+  };
+
+
+  document
+    .getElementById("callerName")
+    .textContent =
+      data.caller;
+
+  document
+    .getElementById("callerNumber")
+    .textContent =
+      data.number;
+
+  document
+    .getElementById("callMeta")
+    .textContent =
+      "Incoming call...";
+
+  document
+    .getElementById("protectionBadge")
+    .textContent =
+      "IDENTITYSHIELD SCANNING";
+
+  document
+    .getElementById("voiceText")
+    .textContent =
+      "Analyzing audio stream...";
+
+  document
+    .getElementById("contextText")
+    .textContent =
+      "Listening for contextual risk...";
+
+  document
+    .getElementById("videoText")
+    .textContent =
+      selected === "video"
+      ? "Analyzing video frames..."
+      : "Not available";
+
+  document
+    .getElementById("threatTitle")
+    .textContent =
+      "Analyzing Active Call";
+
+  document
+    .getElementById("threatDescription")
+    .textContent =
+      "Lightweight monitoring is screening the active call for suspicious triggers.";
+
+  document
+    .getElementById("signalList")
+    .innerHTML =
+      "<li>Lightweight monitoring active</li>";
+
+  document
+    .getElementById("transcriptArea")
+    .innerHTML =
+      "";
+
+  document
+    .getElementById("timelineArea")
+    .innerHTML =
+      "";
+
+  const triggerStatus = document.getElementById("triggerStatus");
+  triggerStatus.className = "trigger-status";
+  triggerStatus.innerHTML = "<strong>Lightweight Monitoring:</strong> ACTIVE • Screening for suspicious triggers";
+
+  addTimeline(
+    "Incoming call received"
+  );
+
+
+  const answerTimeout =
+    setTimeout(() => {
+
+      if (!currentIncident)
+        return;
+
+      currentIncident.answered =
+        getTime();
+
+      document
+        .getElementById("callMeta")
+        .textContent =
+          "Call connected • 00:00";
+
+      addTimeline(
+        "Call answered"
+      );
+
+      startCallTimer();
+
+      runConversation(
+        data
+      );
+
+    }, 1000);
+
+  simulationTimeouts.push(
+    answerTimeout
+  );
+}
+
+
+function startCallTimer() {
+
+  secondsElapsed =
+    0;
+
+  clearInterval(
+    callTimer
+  );
+
+  callTimer =
+    setInterval(() => {
+
+      secondsElapsed++;
+
+      const min =
+        String(
+          Math.floor(secondsElapsed / 60)
+        ).padStart(2, "0");
+
+      const sec =
+        String(
+          secondsElapsed % 60
+        ).padStart(2, "0");
+
+      const meta =
+        document.getElementById("callMeta");
+
+      if (currentIncident) {
+
+        meta.textContent =
+          `Call connected • ${min}:${sec}`;
+      }
+
+    }, 1000);
+}
+
+
+function runConversation(data) {
+
+  data.transcript.forEach(
+    (line, index) => {
+
+      const timeout =
+        setTimeout(() => {
+
+          if (!currentIncident)
+            return;
+
+          addTranscriptLine(
+            line
+          );
+
+          updateRisk(
+            line.risk
+          );
+
+          updateAnalysisProgress(
+            data,
+            line.risk
+          );
+
+          if (line.risk >= 30) {
+
+            const triggerStatus = document.getElementById("triggerStatus");
+            if (!triggerStatus.dataset.triggered) {
+              triggerStatus.dataset.triggered = "true";
+              triggerStatus.classList.add("active");
+              triggerStatus.innerHTML = "<strong>⚠ Trigger Detected:</strong> Suspicious conversation / media indicators activated targeted analysis";
+              addTimeline("Trigger event activated targeted Voice + Video + Context analysis");
+            }
+
+            addTimeline(
+              "Suspicious conversational indicator detected"
+            );
+          }
+
+          if (
+            line.risk >= 55 &&
+            line.risk < 75
+          ) {
+
+            document
+              .getElementById("callScreen")
+              .classList.add("shake");
+
+            setTimeout(() => {
+
+              document
+                .getElementById("callScreen")
+                .classList.remove("shake");
+
+            }, 800);
+
+            addTimeline(
+              "High-risk threshold reached"
+            );
+          }
+
+          if (line.risk >= 55) {
+
+            showWarning(
+              data
+            );
+          }
+
+          if (
+            index ===
+            data.transcript.length - 1
+          ) {
+
+            finalizeAnalysis(
+              data
+            );
+          }
+
+        },
+        2200 + index * 2400
+      );
+
+      simulationTimeouts.push(
+        timeout
+      );
+
+    }
+  );
+}
+
+
+function addTranscriptLine(line) {
+
+  const area =
+    document.getElementById("transcriptArea");
+
+  const item =
+    document.createElement("div");
+
+  item.className =
+    "line";
+
+  let content =
+    line.text;
+
+  if (line.highlight) {
+
+    content =
+      content.replace(
+        line.highlight,
+        `<mark>${line.highlight}</mark>`
+      );
+  }
+
+  item.innerHTML =
+    `<b>Caller:</b> ${content}`;
+
+  area.appendChild(item);
+
+  area.scrollTop =
+    area.scrollHeight;
+}
+
+
+function updateAnalysisProgress(
+  data,
+  currentRisk
+) {
+
+  const ratio =
+    currentRisk /
+    data.finalRisk;
+
+  const voice =
+    Math.min(
+      data.finalVoice,
+      Math.round(
+        data.finalVoice * ratio
+      )
+    );
+
+  const context =
+    Math.min(
+      data.finalContext,
+      Math.round(
+        data.finalContext * ratio
+      )
+    );
+
+  const video =
+    Math.min(
+      data.finalVideo,
+      Math.round(
+        data.finalVideo * ratio
+      )
+    );
+
+
+  document
+    .getElementById("voiceBar")
+    .style.width =
+      voice + "%";
+
+  document
+    .getElementById("contextBar")
+    .style.width =
+      context + "%";
+
+  document
+    .getElementById("videoBar")
+    .style.width =
+      video + "%";
+
+
+  currentIncident.voice =
+    voice;
+
+  currentIncident.context =
+    context;
+
+  currentIncident.video =
+    video;
+}
+
+
+function finalizeAnalysis(data) {
+
+  document
+    .getElementById("voiceText")
+    .textContent =
+      data.voiceText;
+
+  document
+    .getElementById("contextText")
+    .textContent =
+      data.contextText;
+
+  document
+    .getElementById("videoText")
+    .textContent =
+      data.videoText;
+
+  document
+    .getElementById("voiceBar")
+    .style.width =
+      data.finalVoice + "%";
+
+  document
+    .getElementById("contextBar")
+    .style.width =
+      data.finalContext + "%";
+
+  document
+    .getElementById("videoBar")
+    .style.width =
+      data.finalVideo + "%";
+
+  document
+    .getElementById("threatTitle")
+    .textContent =
+      data.title;
+
+  document
+    .getElementById("threatDescription")
+    .textContent =
+      data.description;
+
+  const list =
+    document
+      .getElementById("signalList");
+
+  list.innerHTML =
+    "";
+
+  data.signals.forEach(
+    signal => {
+
+      const li =
+        document.createElement("li");
+
+      li.textContent =
+        signal;
+
+      list.appendChild(li);
+    }
+  );
+
+
+  currentIncident.voice =
+    data.finalVoice;
+
+  currentIncident.context =
+    data.finalContext;
+
+  currentIncident.video =
+    data.finalVideo;
+
+  currentIncident.risk =
+    data.finalRisk;
+
+  updateRisk(
+    data.finalRisk
+  );
+
+  addTimeline(
+    "Multimodal risk assessment completed"
+  );
+
+
+  if (data.finalRisk < 30) {
+
+    const triggerStatus = document.getElementById("triggerStatus");
+    triggerStatus.className = "trigger-status";
+    triggerStatus.innerHTML = "<strong>Lightweight Monitoring:</strong> COMPLETE • No suspicious trigger detected";
+
+    currentIncident.action =
+      "No intervention required";
+  }
+}
+
+
+function showWarning(data) {
+
+  const overlay =
+    document
+      .getElementById("warningOverlay");
+
+  if (
+    !overlay.classList.contains("hidden")
+  )
+    return;
+
+  overlay.classList.remove(
+    "hidden"
+  );
+
+  document
+    .getElementById("callScreen")
+    .classList.add("warning-active");
+
+  let heading =
+    "Possible Fraud Call Detected";
+
+  if (
+    data.title.includes("Digital Arrest")
+  ) {
+
+    heading =
+      "Possible Digital Arrest Scam";
+  }
+
+  else if (
+    data.title.includes("Video")
+  ) {
+
+    heading =
+      "Possible Video Deepfake";
+  }
+
+  else if (
+    data.title.includes("Voice")
+  ) {
+
+    heading =
+      "Possible AI Voice Scam";
+  }
+
+
+  document
+    .getElementById("warningTitle")
+    .textContent =
+      heading;
+
+  document
+    .getElementById("warningMessage")
+    .textContent =
+      "Do not share OTPs, banking credentials, sensitive information or transfer money until the caller is independently verified.";
+
+  addTimeline(
+    "Critical real-time warning displayed"
+  );
+
+  currentIncident.action =
+    "Critical warning displayed";
+}
+
+
+function blockCaller() {
+
+  currentIncident.blocked =
+    "Yes";
+
+  currentIncident.action =
+    "Call ended and caller blocked";
+
+  addTimeline(
+    "User selected Block & End Call"
+  );
+
+  endCall(
+    "Caller blocked by user"
+  );
+}
+
+
+function endCall(reason) {
+
+  if (!currentIncident)
+    return;
+
+  clearInterval(
+    callTimer
+  );
+
+  simulationTimeouts.forEach(
+    timeout =>
+      clearTimeout(timeout)
+  );
+
+  simulationTimeouts =
+    [];
+
+  currentIncident.ended =
+    getTime();
+
+  const min =
+    String(
+      Math.floor(secondsElapsed / 60)
+    ).padStart(2, "0");
+
+  const sec =
+    String(
+      secondsElapsed % 60
+    ).padStart(2, "0");
+
+  currentIncident.duration =
+    `${min}:${sec}`;
+
+  if (
+    currentIncident.action ===
+    "No action yet"
+  ) {
+
+    currentIncident.action =
+      reason ||
+      "Call ended";
+  }
+
+
+  addTimeline(
+    reason ||
+    "Call ended"
+  );
+
+
+  document
+    .getElementById("warningOverlay")
+    .classList.add("hidden");
+
+  document
+    .getElementById("callScreen")
+    .classList.remove("warning-active");
+
+  document
+    .getElementById("callerName")
+    .textContent =
+      "Call Ended";
+
+  document
+    .getElementById("callMeta")
+    .textContent =
+      `Duration • ${currentIncident.duration}`;
+
+  document
+    .getElementById("protectionBadge")
+    .textContent =
+      "INCIDENT RECORDED";
+
+
+  document
+    .getElementById("incidentSaved")
+    .classList.remove("hidden");
+
+
+  saveCurrentIncidentToVault();
+
+  updateDashboard();
+}
+
+
+function saveCurrentIncidentToVault() {
+
+  const incident =
+    currentIncident;
+
+  storedIncidents[
+    incident.id
+  ] =
+    JSON.parse(
+      JSON.stringify(incident)
+    );
+
+
+  const grid =
+    document
+      .getElementById("vaultGrid");
+
+
+  const card =
+    document.createElement("div");
+
+  card.className =
+    "incident";
+
+
+  const riskLevel =
+    getRiskLevel(
+      incident.risk
+    );
+
+
+  const riskClass =
+    riskLevel === "VERY HIGH"
+      ? "red"
+      : riskLevel === "HIGH"
+      ? "orange"
+      : riskLevel === "MODERATE"
+      ? "orange"
+      : "green";
+
+
+  card.innerHTML =
+    `
+      <div class="incident-head">
+        <strong>Incident #${incident.id}</strong>
+        <span class="${riskClass}">
+          ${riskLevel}
+        </span>
+      </div>
+
+      <p>
+        <b>Threat:</b>
+        ${incident.title}
+      </p>
+
+      <p>
+        <b>Risk Score:</b>
+        ${incident.risk} / 100
+      </p>
+
+      <p>
+        <b>Caller:</b>
+        ${incident.caller}
+      </p>
+
+      <p>
+        <b>Action:</b>
+        ${incident.action}
+      </p>
+
+      <p>
+        <b>Blocked:</b>
+        ${incident.blocked}
+      </p>
+
+      <p>
+        <b>Evidence:</b>
+        SHA-256 integrity protected
+      </p>
+
+      <button
+        class="btn btn-primary"
+        onclick="downloadStoredIncident('${incident.id}')"
+      >
+        Download Report
+      </button>
+
+      <button
+        class="btn btn-light"
+        onclick="prepareComplaint('${incident.id}')"
+      >
+        Prepare Complaint Evidence
+      </button>
+    `;
+
+
+  grid.prepend(
+    card
+  );
+}
+
+
+function updateDashboard() {
+
+  let calls =
+    parseInt(
+      document
+        .getElementById("callsCount")
+        .textContent
+    );
+
+  document
+    .getElementById("callsCount")
+    .textContent =
+      calls + 1;
+
+
+  if (
+    currentIncident.risk >= 30
+  ) {
+
+    let threats =
+      parseInt(
+        document
+          .getElementById("threatCount")
+          .textContent
+      );
+
+    document
+      .getElementById("threatCount")
+      .textContent =
+        threats + 1;
+  }
+
+
+  if (
+    currentIncident.risk >= 55
+  ) {
+
+    let interventions =
+      parseInt(
+        document
+          .getElementById("interventionCount")
+          .textContent
+      );
+
+    document
+      .getElementById("interventionCount")
+      .textContent =
+        interventions + 1;
+  }
+}
+
+
+function resetSimulation() {
+
+  clearInterval(
+    callTimer
+  );
+
+  simulationTimeouts.forEach(
+    timeout =>
+      clearTimeout(timeout)
+  );
+
+  simulationTimeouts =
+    [];
+
+  currentIncident =
+    null;
+
+  secondsElapsed =
+    0;
+
+
+  document
+    .getElementById("warningOverlay")
+    .classList.add("hidden");
+
+  document
+    .getElementById("callScreen")
+    .classList.remove("warning-active");
+
+  document
+    .getElementById("incidentSaved")
+    .classList.add("hidden");
+
+  const triggerStatus = document.getElementById("triggerStatus");
+  triggerStatus.className = "trigger-status";
+  triggerStatus.removeAttribute("data-triggered");
+  triggerStatus.innerHTML = "<strong>Lightweight Monitoring:</strong> READY • Waiting for suspicious trigger";
+
+  document
+    .getElementById("voiceBar")
+    .style.width =
+      "0%";
+
+  document
+    .getElementById("contextBar")
+    .style.width =
+      "0%";
+
+  document
+    .getElementById("videoBar")
+    .style.width =
+      "0%";
+
+  document
+    .getElementById("riskScore")
+    .textContent =
+      "0";
+
+  document
+    .getElementById("riskBadge")
+    .textContent =
+      "LOW RISK";
+}
+
+
+function getRiskLevel(score) {
+
+  if (score < 30)
+    return "LOW";
+
+  if (score < 55)
+    return "MODERATE";
+
+  if (score < 75)
+    return "HIGH";
+
+  return "VERY HIGH";
+}
+
+
+function createReport(incident) {
+
+return `
+============================================================
+              NEURAL NEXUS — IDENTITYSHIELD
+                 INCIDENT THREAT REPORT
+============================================================
+
+INCIDENT INFORMATION
+------------------------------------------------------------
+
+Incident ID:
+${incident.id}
+
+Threat Classification:
+${incident.title}
+
+Caller:
+${incident.caller}
+
+Caller / Session Identifier:
+${incident.number}
+
+Risk Score:
+${incident.risk} / 100
+
+Risk Level:
+${getRiskLevel(incident.risk)}
+
+
+CALL TIMESTAMPS
+------------------------------------------------------------
+
+Incoming Call Received:
+${incident.received || "Not recorded"}
+
+Call Answered:
+${incident.answered || "Not recorded"}
+
+Call Ended:
+${incident.ended || "Not recorded"}
+
+Call Duration:
+${incident.duration || "Not recorded"}
+
+
+MULTIMODAL THREAT ANALYSIS
+------------------------------------------------------------
+
+Voice Risk:
+${incident.voice}%
+
+Conversation / Context Risk:
+${incident.context}%
+
+Video Risk:
+${incident.video}%
+
+
+DETECTED THREAT INDICATORS
+------------------------------------------------------------
+
+${incident.signals
+  .map(
+    (signal, index) =>
+      `${index + 1}. ${signal}`
+  )
+  .join("\n")}
+
+
+INCIDENT TIMELINE
+------------------------------------------------------------
+
+${incident.timeline.join("\n")}
+
+
+USER / SYSTEM RESPONSE
+------------------------------------------------------------
+
+Action Taken:
+${incident.action}
+
+Caller Blocked:
+${incident.blocked}
+
+
+EVIDENCE INTEGRITY
+------------------------------------------------------------
+
+Integrity Method:
+SHA-256 Cryptographic Hash
+
+A separate SHA-256 integrity record is generated with this
+incident report.
+
+If this report is modified after generation, recalculating
+its SHA-256 hash will produce a different value.
+
+
+COMPLAINT SUPPORT
+------------------------------------------------------------
+
+This report is intended to assist the user in documenting
+a suspected cybersecurity incident and preparing supporting
+information for an appropriate cybercrime complaint.
+
+IdentityShield does not automatically determine criminal
+liability and this prototype does not automatically submit
+complaints to law-enforcement systems.
+
+
+PROTOTYPE NOTICE
+------------------------------------------------------------
+
+This document was generated by the Neural Nexus
+IdentityShield prototype.
+
+Threat scores shown during this demonstration are simulated
+to represent the intended real-time detection workflow.
+
+
+============================================================
+                     END OF REPORT
+============================================================
+`;
+}
+
+
+async function generateSHA256(text) {
+
+  const encoder =
+    new TextEncoder();
+
+  const data =
+    encoder.encode(text);
+
+  const hashBuffer =
+    await crypto.subtle.digest(
+      "SHA-256",
+      data
+    );
+
+  const hashArray =
+    Array.from(
+      new Uint8Array(hashBuffer)
+    );
+
+  return hashArray
+    .map(
+      byte =>
+        byte
+          .toString(16)
+          .padStart(2, "0")
+    )
+    .join("");
+}
+
+
+function downloadFile(
+  filename,
+  content
+) {
+
+  const blob =
+    new Blob(
+      [content],
+      {
+        type:
+          "text/plain;charset=utf-8"
+      }
+    );
+
+  const url =
+    URL.createObjectURL(blob);
+
+  const a =
+    document.createElement("a");
+
+  a.href =
+    url;
+
+  a.download =
+    filename;
+
+  document
+    .body
+    .appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+  setTimeout(
+    () =>
+      URL.revokeObjectURL(url),
+    500
+  );
+}
+
+
+async function downloadStoredIncident(id) {
+
+  const incident =
+    storedIncidents[id];
+
+  if (!incident) {
+
+    alert(
+      "Incident record not found."
+    );
+
+    return;
+  }
+
+
+  const report =
+    createReport(incident);
+
+
+  const hash =
+    await generateSHA256(
+      report
+    );
+
+
+  const reportName =
+    `IdentityShield_${id}_Incident_Report.txt`;
+
+  const hashName =
+    `IdentityShield_${id}_SHA256.txt`;
+
+
+  downloadFile(
+    reportName,
+    report
+  );
+
+
+  const hashFile =
+`
+NEURAL NEXUS — IDENTITYSHIELD
+EVIDENCE INTEGRITY RECORD
+
+Incident ID:
+${id}
+
+Protected Report:
+${reportName}
+
+Hash Algorithm:
+SHA-256
+
+SHA-256 HASH:
+
+${hash}
+
+------------------------------------------------------------
+
+VERIFICATION INSTRUCTIONS
+
+Generate a SHA-256 hash of the original incident report.
+
+If the recalculated value matches the hash above,
+the report contents are unchanged.
+
+If the values differ,
+the report has been modified after generation.
+
+------------------------------------------------------------
+
+Generated by:
+IdentityShield Prototype
+`;
+
+
+  setTimeout(
+    () => {
+
+      downloadFile(
+        hashName,
+        hashFile
+      );
+
+    },
+    400
+  );
+
+
+  alert(
+    "Incident report and SHA-256 integrity file generated."
+  );
+}
+
+
+async function prepareComplaint(id) {
+
+  const incident =
+    storedIncidents[id];
+
+  if (!incident)
+    return;
+
+
+  const report =
+    createReport(
+      incident
+    );
+
+
+  const hash =
+    await generateSHA256(
+      report
+    );
+
+
+  alert(
+`COMPLAINT EVIDENCE READY
+
+Incident:
+${id}
+
+Threat:
+${incident.title}
+
+Risk Score:
+${incident.risk}/100
+
+SHA-256 integrity fingerprint generated.
+
+Use "Download Report" to save the incident report and integrity record for supporting documentation.`
+  );
+}
+
+</script>
+
+</body>
+</html>
