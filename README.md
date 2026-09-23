@@ -19,7 +19,7 @@ Unlike legacy reactive security systems that analyze recorded media after financ
 
 The technical architecture, legal positioning, and empirical benchmarks supporting IdentityShield are documented in detail:
 
-* 📄 **Technical Research & Legal Specs:** See [`docs/RESEARCH.md`](docs/Research.md) for benchmark datasets, competitor matrices, and DPDP Act compliance notes.
+* 📄 **Technical Research & Legal Specs:** See [`docs/Research.md`](docs/Research.md) for benchmark datasets, competitor matrices, and DPDP Act compliance notes.
 * 📂 **External Research Repository:** [Access Neural_Nexus Google Drive Folder](https://drive.google.com/drive/folders/1kEshmEFXIH1pF_I_JMJKXndjwZukFLTW)
 
 ---
